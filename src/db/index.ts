@@ -4,7 +4,9 @@ import { Pool } from "pg";
 const databaseUrl = process.env.DATABASE_URL;
 
 if (!databaseUrl) {
-  throw new Error("DATABASE_URL is required");
+  console.warn(
+    "[db] DATABASE_URL is not set. Pages that need DB will fall back to defaults. Set the env var on Vercel before going live.",
+  );
 }
 
 const globalForDb = globalThis as typeof globalThis & {
